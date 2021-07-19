@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:CatatDong/views/tambah_data.dart';
+import 'package:CatatDong/views/hapus_data.dart';
 import 'package:CatatDong/models/transaksi.dart';
 import 'package:CatatDong/helpers/database.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:CatatDong/views/hapus_data.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -11,14 +11,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   Future<List<Transaksi>> transaksi;
   Future<List<Transaksi>> pemasukan;
   Future<List<Transaksi>> pengeluaran;
   var dbHelper;
   Future<double> totExp;
-  double totExpFix = 0.0;
   Future<double> totInc;
+  double totExpFix = 0.0;
   double totIncFix = 0.0;
   
   @override
@@ -42,13 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
       pemasukan = dbHelper.getIncome();
       pengeluaran = dbHelper.getExpenses();
       totExp = dbHelper.getTotalExpenses();
-      totExp.then((value) {
-        totExpFix = value.toDouble();
-      });
+      totExp.then((value) {totExpFix = value.toDouble();});
       totInc = dbHelper.getTotalIncome();
-      totInc.then((value) {
-        totIncFix = value.toDouble();
-      });
+      totInc.then((value) {totIncFix = value.toDouble();});
     });
   }
   
@@ -261,7 +256,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       onRefresh: () => _refreshData(),
                       child: list(transaksi),
                     ),
-                    
                     list(pemasukan),
                     list(pengeluaran),
                   ],

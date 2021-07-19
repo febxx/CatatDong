@@ -161,6 +161,7 @@ class _AddDataState extends State<AddData> {
       ),
     );
   }
+  
   TabScope _tabScope = TabScope.getInstance();
   
   @override
@@ -174,14 +175,11 @@ class _AddDataState extends State<AddData> {
           title: Text('TAMBAH DATA', style: TextStyle(color: Colors.black),),
           backgroundColor: Colors.yellow,
           leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            }, 
+            onTap: () {Navigator.pop(context);}, 
             child: Icon(FontAwesomeIcons.arrowLeft, color: Colors.black, size: 18,)
           ),
         ),
         body: Container(
-          // padding: EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
               Container(
